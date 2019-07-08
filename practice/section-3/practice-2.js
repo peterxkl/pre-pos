@@ -1,13 +1,14 @@
 'use strict';
 
 function createUpdatedCollection(collectionA, objectB) {
-  var valueb = objectB.value;
-    for(let i = 0;i<valueb.length;i++){
-      for(let index in collectionA){
-        if(valueb[i]==collectionA[index].key){
-          collectionA[index].count-=parseInt(collectionA[index].count/3);
-          break;
-        }
+  var collectionB=objectB.value;
+  for(var i=0;i<collectionA.length;i++){
+    var x=collectionA[i].key;
+    for(var j=0;j<collectionB.length;j++){
+      if(x==collectionB[j]){
+        collectionA[i].count-=parseInt(collectionA[i].count/3);
+        break;
+      }
     }
   }
   return collectionA;

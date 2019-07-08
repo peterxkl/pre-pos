@@ -1,36 +1,31 @@
 'use strict';
 
 function createUpdatedCollection(collectionA, objectB) {
+  //first step
   var array=[];
-  var obj = {}; 
-  var valueb = objectB.value;
-  for(var i= 0, l = collectionA.length; i< l; i++){ 
+  var object = {}; 
+  for(var i= 0; i< collectionA.length; i++){ 
       var item = collectionA[i]; 
       var num = 0;
-      if(item.length>1){
-        num= parseInt(item.replace(/[^0-9]/ig,""));
-        item = item.substring(0,1);
-        obj[item] = obj[item] ? obj[item] +num : num
-      }
-      else{
-        obj[item] = (obj[item] +1 ) || 1; 
-      }
+      object[item] = (object[item] +1 ) || 1; 
   } 
-  for(let key in obj) {
-        var object1 ={
+  for(let key in object) {
+      var object1 ={
           key:key,
-          count: obj[key]
-    }
-    array.push(object1);
-  }
-  for(let i = 0;i<valueb.length;i++){
-    for(let index in array){
-      if(valueb[i]==array[index].key){
-        array[index].count-=parseInt(array[index].count/3);
-        break;
+          count: object[key]
       }
+      array.push(object1);
   }
-}
-  console.log(array);
-  return array;
+   //second step
+   var collectionB=objectB.value;
+   for(var i=0;i<array.length;i++){
+     var x=array[i].key;
+     for(var j=0;j<collectionB.length;j++){
+       if(x==collectionB[j]){
+        array[i].count-=parseInt(array[i].count/3);
+         break;
+       }
+     }
+   }
+   return array;
 }
